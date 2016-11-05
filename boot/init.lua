@@ -14,6 +14,7 @@ local log = function(info, level)
 
   onlyCI("log", level, log_fullmes)
   term.blit( log_fullmes, string.rep("b", #log_premes)..string.rep("3", #log_fullmes-#log_premes), string.rep("f", #log_fullmes) )
+  print()
 end
 
 log("Swift is starting!", "info")
