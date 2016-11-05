@@ -65,9 +65,9 @@ proc.getStatus = function(id)
   return coroutine.status( se[id].run )
 end
 
-proc.end = function(id, reason)
+proc["end"] = function(id, reason)
   if not se[id] then
-    error("A process with an id of '"..tostring(id).."' does not exist, so it cannot be ended.")
+    error("A process with an id of '"..tostring(id).."' does not exist, so it cannot be asked to end itself.")
   end
 
   coroutine.resume( se[id].run, "end", reason )
