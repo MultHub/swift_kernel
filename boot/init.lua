@@ -2,6 +2,8 @@ local function onlyCI(func, ...)
   if howlci then howlci[func](...) end
 end
 
+_G.COSVER = _HOST or _CC_VERSION
+
 -- I love optimization, guys!
 local log_premes
 local log_fullmes
@@ -17,5 +19,5 @@ local function log(info, level)
 end
 
 log("Swift is starting!", "info")
-onlyCI( "status", "pass", "this boot worked! yey!" )
+onlyCI( "status", "pass", "It worked! Yay! (".._G.COSVER..")" )
 onlyCI( "close" )
