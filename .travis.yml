@@ -1,6 +1,10 @@
 jdk:
   - oraclejdk8
 install:
+  - mkdir -p $HOME/.cc-jars
   - wget -O howlci.jar https://dl.bintray.com/squiddev/maven/org/squiddev/howl.ci/0.1.9/howl.ci-0.1.9.jar
 script:
   - java -jar howlci.jar
+cache:
+  directories:
+  - $HOME/.cc-jars
