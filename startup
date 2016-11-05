@@ -23,7 +23,7 @@
 local progs = {
 	function()
 		print("Before shell.")
-		os.run( {}, "boot/init.lua" )
+		os.run( {}, "lib/00_proc.lua" )
 	end,
 
 	--[[
@@ -35,6 +35,10 @@ local progs = {
 	end
 	]]
 }
+
+_G.onlyCI = function(func, ...)
+  if howlci then howlci[func](...) end
+end
 
 local oldState = {}
 local msgs = true

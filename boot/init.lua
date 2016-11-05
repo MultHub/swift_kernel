@@ -1,8 +1,6 @@
-local function onlyCI(func, ...)
-  if howlci then howlci[func](...) end
-end
 
-_G.COSVER = _HOST or _CC_VERSION
+
+_G.COSVER = _HOST or "CraftOS ".._CC_VERSION
 
 -- I love optimization, guys!
 local log_premes
