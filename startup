@@ -45,7 +45,7 @@ local msgs = true
 
 local oldErr = printError
 
-local function inject()
+local inject = function()
 	_G.printError = oldErr
 	term.setCursorPos(1,1)
 	term.clear()

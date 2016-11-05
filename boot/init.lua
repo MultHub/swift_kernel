@@ -1,12 +1,12 @@
+if _G.COSVER then return end
 
-
-_G.COSVER = _HOST or "CraftOS ".._CC_VERSION
+_G.COSVER = _HOST or "ComputerCraft ".._CC_VERSION
 
 -- I love optimization, guys!
 local log_premes
 local log_fullmes
 
-local function log(info, level)
+local log = function(info, level)
   level = level or "verbose"
 
   log_premes = "["..level.." @ "..tostring(os.clock()).."]"
