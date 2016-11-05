@@ -1,3 +1,59 @@
-if howlci then
-  loadfile("boot_ci.lua")()
+--[[
+	Attempt to recreate Top-Level coroutines
+	Because the old program doesn't work (for me atleast)
+
+	UPDATE: This is Lua 5.2+ compatible now
+
+	Credits to:
+	-Nevercast (for the old script, of course)
+	-Piorjade (kappa)
+
+	Have fun with this :)
+
+	Nevercast's code: http://pastebin.com/2SQAzrWi
+
+	The problem was the way he searched for shell. I already fixed it ones but Lua 5.2+ won't have getfenv()
+	anymore and that's why I give a even smaller version of it
+
+	And thanks (again) to Nevercast for this awesome idea :)
+
+	-Piorjade 2016
+]]
+
+local progs = {
+	function()
+		print("Before shell.")
+		os.run( {}, "boot/init.lua" )
+	end,
+
+	--[[
+
+	EXAMPLE:
+
+	function()
+		os.run( {}, "/my/secret/stuff/secretApplication" )
+	end
+	]]
+}
+
+local oldState = {}
+local msgs = true
+
+local oldErr = printError
+
+local function inject()
+	_G.printError = oldErr
+	term.setCursorPos(1,1)
+	term.clear()
+	_G['rednet'] = nil
+	os.loadAPI("/rom/apis/rednet")
+	local ok, err = pcall( function()
+	parallel.waitForAny(
+		unpack(progs)
+	)
+
+	end )
 end
+
+_G.printError = inject
+os.queueEvent("terminate")
