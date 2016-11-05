@@ -17,5 +17,13 @@ local log = function(info, level)
 end
 
 log("Swift is starting!", "info")
+
+local libload = fs.list("/lib")
+
+for i=1, #libload do
+  log("verbose", "Loading library from file '"..libload[i].."'")
+  loadfile( fs.combine( "/lib", libload[i] ) )()
+end
+
 onlyCI( "status", "pass", "It worked! Yay! (".._G.COSVER..")" )
 onlyCI( "close" )

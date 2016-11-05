@@ -6,6 +6,9 @@ _G.proc = {}
 local re
 
 proc.create = function(func, name)
+  if type(func) ~= "function" then
+    error("Expected function, got "..type(func).." instead. 0/10 would not execute wrongly again")
+  end
   ret = #se+1
   se[ret] = {
     ["run"] = coroutine.create(func),
@@ -57,11 +60,23 @@ end
 
 proc.getStatus = function(id)
   if not se[id] then
-    error("A process with an id of '"..tostring(id).."' does not exist, so it cannot be killed.")
+    error("A process with an id of '"..tostring(id).."' does not exist, so the status for it cannot be fetched.")
   end
   return coroutine.status( se[id].run )
 end
 
+proc.end = function(id, reason)
+  if not se[id] then
+    error("A process with an id of '"..tostring(id).."' does not exist, so it cannot be ended.")
+  end
+
+  coroutine.resume( se[id].run, "end", reason )
+
+end
+
+proc.idExists = function(id)
+  return (se.id.run ~= nil)
+end
 
 local sysboot = proc.create(loadfile("/boot/init.lua"), "sysboot")
 se[sysboot]["veryImportant"] = true
