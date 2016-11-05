@@ -11,3 +11,4 @@ script:
 cache:
   directories:
   - $HOME/.cc-jars
+language: java

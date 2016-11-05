@@ -62,6 +62,7 @@ proc.getStatus = function(id)
   return coroutine.status( se[id].run )
 end
 
+
 local sysboot = proc.create(loadfile("/boot/init.lua"), "sysboot")
 se[sysboot]["veryImportant"] = true
 
