@@ -1,0 +1,3 @@
+if howlci then
+  loadfile("boot_ci.lua")
+end
