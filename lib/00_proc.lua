@@ -102,7 +102,7 @@ proc.ipm.queueEvent = function(id, ...)
 end
 
 proc.ipm.receive = function()
-  return os.pullEventRaw("ipm_receive")
+  return coroutine.yield("ipm_receive")
 end
 
 
