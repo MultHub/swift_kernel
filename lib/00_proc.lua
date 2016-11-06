@@ -8,7 +8,7 @@ local re
 
 proc.create = function(func, name)
   if type(func) ~= "function" then
-    error("Expected function, got "..type(func).." instead. 0/10 would not execute wrongly again")
+    error("Expected function, got "..type(func).." instead. 0/10 would not wrongly execute again", 2)
   end
   ret = #se+1
   se[ret] = {
@@ -21,10 +21,10 @@ end
 
 proc.kill = function(id)
   if not se[id] then
-    error("A process with an id of '"..tostring(id).."' does not exist, so it cannot be killed.")
+    error("A process with an id of '"..tostring(id).."' does not exist, so it cannot be killed.", 2)
   end
   if se[id].veryImportant then
-    error("The process with an id of '"..tostring(id).."' is important and cannot be killed!")
+    error("The process with an id of '"..tostring(id).."' is important and cannot be killed!", 2)
   end
   se[id] = nil
   onlyCI("log", "debug", "Killed a process with the id of "..tostring(#se+1))
@@ -61,14 +61,14 @@ end
 
 proc.status = function(id)
   if not se[id] then
-    error("A process with an id of '"..tostring(id).."' does not exist, so the status for it cannot be fetched.")
+    error("A process with an id of '"..tostring(id).."' does not exist, so the status for it cannot be fetched.", 2)
   end
   return coroutine.status( se[id].run )
 end
 
 proc["end"] = function(id, reason)
   if not se[id] then
-    error("A process with an id of '"..tostring(id).."' does not exist, so it cannot be asked to end itself.")
+    error("A process with an id of '"..tostring(id).."' does not exist, so it cannot be asked to end itself.", 2)
   end
 
   coroutine.resume( se[id].run, "end", reason )
@@ -81,7 +81,7 @@ end
 
 proc.ipm.send = function(id, ...)
   if not se[id] then
-    error("A process with an id of '"..tostring(id).."' does not exist, so I don't know who to text.")
+    error("A process with an id of '"..tostring(id).."' does not exist, so I don't know who to text.", 2)
   end
 
   coroutine.resume( se[id].run, "ipm_receive", ... )
@@ -89,7 +89,7 @@ end
 
 proc.ipm.queueEvent = function(id, ...)
   if not se[id] then
-    error("A process with an id of '"..tostring(id).."' does not exist, so I don't know who to text.")
+    error("A process with an id of '"..tostring(id).."' does not exist, so I don't know who to text.", 2)
   end
 
   coroutine.resume( se[id].run, ... )
