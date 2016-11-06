@@ -22,7 +22,7 @@ log("Swift is starting!", "info")
 local libload = fs.list("/lib")
 
 for i=1, #libload do
-  log("Loading library from file '"..libload[i].."'", "verbose")
+  log("Loading library from file '"..libload[i].."'", "debug")
   loadfile( fs.combine( "/lib", libload[i] ) )()
 end
 
