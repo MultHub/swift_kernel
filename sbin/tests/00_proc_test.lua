@@ -10,17 +10,15 @@ for k,v in pairs(procyon) do
   howlci.log("debug", "ID: "..tostring(k).." / Name: "..tostring(v.name).." / Status: "..tostring(v.status))
 end
 
-for i=1, 5 do
-  print("waiting 2 secs to check for marco/polo completion... (try "..tostring(i)..")")
-  sleep(2)
-  if _G.GOTMARCO and _G.GOTPOLO then
-    proc.kill( _G.MARCO_ID )
-    proc.kill( _G.POLO_ID )
-    done = true
-    print("marco/polo success!")
-    howlci.log("info", "Marco/Polo success!")
-    break
-  end
+print("waiting 2 secs to check for marco/polo completion...")
+sleep(2)
+if _G.GOTMARCO and _G.GOTPOLO then
+  proc.kill( _G.MARCO_ID )
+  proc.kill( _G.POLO_ID )
+  done = true
+  print("marco/polo success!")
+  howlci.log("info", "Marco/Polo success!")
+  break
 end
 
 if done then

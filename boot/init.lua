@@ -28,7 +28,12 @@ for i=1, #libload do
 end
 
 if howlci then
-  proc.create(loadfile("/sbin/howltest.lua"), "howlci-tester")
+  for i=1, #testload do
+    if string.sub(testload[i], 3, 3) == "_" then
+      log("Running test '"..testload[i].."'!", "info")
+      loadfile( fs.combine("/sbin/tests", testload[i]) )() --here we don't start a new process because we don't want multiple tests running at the same time. that'll cause anarchy in the logs!
+    end
+  end
 end
 
 
