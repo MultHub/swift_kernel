@@ -25,9 +25,8 @@ end
 
 if done then
   howci.log("debug", "exiting proc test")
-  return
 else
   howlci.status("fail", "Marco/Polo process test failed!")
   printError("Marco/Polo process test failed!")
 end
-return
+return "something, i dunno, what am I supposed to return?! am I supposed to take over mars or something?!"

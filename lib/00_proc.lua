@@ -59,7 +59,7 @@ proc.list = function()
   return list
 end
 
-proc.getStatus = function(id)
+proc.status = function(id)
   if not se[id] then
     error("A process with an id of '"..tostring(id).."' does not exist, so the status for it cannot be fetched.")
   end
