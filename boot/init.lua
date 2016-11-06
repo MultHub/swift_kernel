@@ -31,7 +31,7 @@ if howlci then
   for i=1, #testload do
     if string.sub(testload[i], 3, 3) == "_" then
       log("Running test '"..testload[i].."'!", "info")
-      proc.create( loadfile(testload[i]), "TEST_"..testload[i] )
+      proc.create( loadfile( fs.combine("/sbin/tests", testload[i]) ), "TEST_"..testload[i] )
     end
   end
 end
