@@ -5,6 +5,7 @@ sleep( 0.5 )
 proc.ipm.send( a, "MARCO!" )
 
 local _, mes = proc.ipm.receive()
+print(_)
 
 if mes == "POLO!" then
   _G.GOTPOLO = true
