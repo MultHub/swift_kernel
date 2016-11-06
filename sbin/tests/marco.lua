@@ -3,8 +3,6 @@ local a = _G.POLO_ID
 
 
 local _, mes = proc.ipm.receive()
-print(_)
-print("mes:"..tostring(mes))
 
 if mes == "MARCO!" then
   _G.GOTMARCO = true
