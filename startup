@@ -20,6 +20,8 @@
 	-Piorjade 2016
 ]]
 
+_G.idea = loadfile("/boot/init.lua")
+
 local progs = {
 	function()
 		print("Before shell.")
