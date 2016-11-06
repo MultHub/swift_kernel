@@ -10,6 +10,7 @@ for i=1, 5 do
   if _G.GOTMARCO and _G.GOTPOLO then
     done = true
     print("marco/polo success!")
+    howlci.log("info", "Marco/Polo success!")
     break
   end
 end
@@ -20,3 +21,4 @@ else
   howlci.status("fail", "Marco/Polo process test failed!")
   printError("Marco/Polo process test failed!")
 end
+return
