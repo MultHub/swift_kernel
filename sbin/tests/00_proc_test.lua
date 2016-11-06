@@ -30,4 +30,4 @@ else
   howlci.status("fail", "Marco/Polo process test failed!")
   printError("Marco/Polo process test failed!")
 end
-error()
+return

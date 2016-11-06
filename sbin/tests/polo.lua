@@ -10,4 +10,4 @@ if mes == "POLO!" then
   _G.GOTPOLO = true
 end
 
-error()
+return

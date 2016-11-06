@@ -12,4 +12,4 @@ sleep(0.5)
 
 proc.ipm.send( a, "POLO!" )
 
-error()
+return
