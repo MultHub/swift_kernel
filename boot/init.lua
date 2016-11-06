@@ -28,7 +28,7 @@ for i=1, #libload do
 end
 
 if howlci then
-  loadfile("/sbin/howltest.lua")
+  loadfile("/sbin/howltest.lua")()
 end
 
 
