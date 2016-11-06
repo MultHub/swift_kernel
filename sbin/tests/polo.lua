@@ -8,6 +8,7 @@ local _, mes = proc.ipm.receive()
 
 if mes == "POLO!" then
   _G.GOTPOLO = true
+  print("POLO!")
   os.queueEvent("POLO!")
 end
 

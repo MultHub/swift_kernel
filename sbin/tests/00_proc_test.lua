@@ -3,8 +3,6 @@
 local marco = loadfile("/sbin/tests/marco.lua")
 local polo = loadfile("/sbin/tests/polo.lua")
 
-setfenv(marco, getfenv(0))
-setfenv(polo, getfenv(0))
 
 _G.MARCO_ID = proc.create( marco, "Marco" )
 _G.POLO_ID = proc.create( polo, "Polo" )

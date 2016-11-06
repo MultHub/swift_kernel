@@ -6,6 +6,7 @@ local _, mes = proc.ipm.receive()
 
 if mes == "MARCO!" then
   _G.GOTMARCO = true
+  print("MARCO!")
 end
 
 sleep(0.5)
