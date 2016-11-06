@@ -87,6 +87,14 @@ proc.ipm.send = function(id, ...)
   coroutine.resume( se[id].run, "ipm_receive", ... )
 end
 
+proc.ipm.queueEvent = function(id, ...)
+  if not se[id] then
+    error("A process with an id of '"..tostring(id).."' does not exist, so I don't know who to text.")
+  end
+
+  coroutine.resume( se[id].run, ... )
+end
+
 proc.ipm.receive = function()
   return os.pullEventRaw("ipm_receive")
 end

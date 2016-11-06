@@ -9,6 +9,7 @@ for i=1, 5 do
   sleep(2)
   if _G.GOTMARCO and _G.GOTPOLO then
     done = true
+    print("marco/polo success!")
     break
   end
 end

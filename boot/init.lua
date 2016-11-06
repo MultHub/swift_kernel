@@ -31,7 +31,7 @@ if howlci then
   for i=1, #testload do
     if string.sub(testload[i], 3, 3) == "_" then
       log("Running test '"..testload[i].."'!", "info")
-      proc.create( loadfile( fs.combine("/sbin/tests", testload[i]) ), "TEST_"..testload[i] )
+      loadfile( fs.combine("/sbin/tests", testload[i]) )() --here we don't start a new process because we don't want multiple tests running at the same time. that'll cause anarchy in the logs!
     end
   end
 end
