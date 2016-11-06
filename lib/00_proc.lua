@@ -1,6 +1,6 @@
 if _G.proc then return end
 
-local bootload = loadfile("/boot/init.lua")
+local bootload = loadfile("boot/init.lua")
 
 
 local se = {}

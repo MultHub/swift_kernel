@@ -23,7 +23,7 @@
 local progs = {
 	function()
 		print("Before shell.")
-		os.run( {}, "lib/00_proc.lua" )
+		loadfile( "lib/00_proc.lua" )()
 	end,
 
 	--[[
