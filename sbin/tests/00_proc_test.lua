@@ -19,7 +19,6 @@ if _G.GOTMARCO and _G.GOTPOLO then
   done = true
   print("marco/polo success!")
   howlci.log("info", "Marco/Polo success!")
-  break
 end
 
 if done then
