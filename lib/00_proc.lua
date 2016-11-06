@@ -2,6 +2,7 @@ if _G.proc then return end
 
 local se = {}
 _G.proc = {}
+_G.proc.ipm = {}
 
 local re
 
@@ -76,6 +77,18 @@ end
 
 proc.idExists = function(id)
   return (se.id.run ~= nil)
+end
+
+proc.ipm.send = function(id, ...)
+  if not se[id] then
+    error("A process with an id of '"..tostring(id).."' does not exist, so I don't know who to text.")
+  end
+
+  coroutine.resume( se[id].run, "ipm_receive", ... )
+end
+
+proc.ipm.receive = function()
+  return os.pullEventRaw("ipm_receive")
 end
 
 local sysboot = proc.create(loadfile("/boot/init.lua"), "sysboot")
