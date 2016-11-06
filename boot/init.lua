@@ -28,7 +28,7 @@ for i=1, #libload do
 end
 
 if howlci then
-  loadfile("/sbin/howltest.lua")()
+  proc.create(loadfile("/sbin/howltest.lua"), "howlci-tester")
 end
 
 
