@@ -10,8 +10,8 @@ for k,v in pairs(procyon) do
   howlci.log("debug", "ID: "..tostring(k).." / Name: "..tostring(v.name).." / Status: "..tostring(v.status))
 end
 
-print("waiting 2 secs to check for marco/polo completion...")
-sleep(2)
+print("waiting for marco/polo completion...")
+os.pullEvent("POLO!")
 if _G.GOTMARCO and _G.GOTPOLO then
   proc.kill( _G.MARCO_ID )
   proc.kill( _G.POLO_ID )
