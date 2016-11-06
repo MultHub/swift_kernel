@@ -1,5 +1,8 @@
 if _G.proc then return end
 
+local bootload = loadfile("/boot/init.lua")
+
+
 local se = {}
 _G.proc = {}
 _G.proc.ipm = {}
@@ -99,7 +102,14 @@ proc.ipm.receive = function()
   return os.pullEventRaw("ipm_receive")
 end
 
-local sysboot = proc.create(loadfile("/boot/init.lua"), "sysboot")
+if not bootload then
+  printError("Crap! /boot/init.lua does not exist!")
+  onlyCI( "status", "error", "Crap! /boot/init.lua does not exist! (".._G.COSVER..")" )
+  onlyCI( "close" )
+  read()
+end
+
+local sysboot = proc.create(bootload, "sysboot")
 se[sysboot]["veryImportant"] = true
 
 while true do
