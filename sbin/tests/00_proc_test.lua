@@ -1,3 +1,4 @@
+print("this is just debug! hi data! (ba dum tsh)")
 
 _G.MARCO_ID = proc.create( loadfile("/sbin/tests/marco.lua"), "Marco" )
 _G.POLO_ID = proc.create( loadfile("/sbin/tests/polo.lua"), "Polo" )
