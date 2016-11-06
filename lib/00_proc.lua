@@ -110,24 +110,21 @@ se[sysboot]["veryImportant"] = true
 local ok
 local err
 
-local function update()
-  local evt = {coroutine.yield()}
+while true do
   for i=1, #se do
     if se[i] and se[i].run then
       if coroutine.status(se[i].run) ~= "dead" then
-        ok, err = coroutine.resume(se[i].run, unpack(evt))
+        ok, err = coroutine.resume(se[i].run)
         if ok ~= nil and ok ~= true then
           -- now son, don't touch that cactus
+          onlyCI("log", "verbose", "process "..tostring(se[i]).." is dead to me!!!"))
           table.remove( se[i] ) -- YOU'RE DEAD TO ME.
         end
       else
+          onlyCI("log", "verbose", "process "..tostring(se[i]).." has been cleaned up."))
         table.remove( se[i] ) -- let's save the garbage collector some work.. he'll appreciate it!
       end
     end
   end
-end
-
-while true do
-  update()
   yield()
 end
