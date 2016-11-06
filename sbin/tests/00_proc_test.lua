@@ -4,6 +4,12 @@ _G.POLO_ID = proc.create( loadfile("/sbin/tests/polo.lua"), "Polo" )
 
 local done = false
 
+howlci.log("debug", "Current running processes:")
+local procyon = proc.list() --I was gonna name the var "procl" but then I saw a huge chance to name it "procyon"! Procyon is a star, also know as Alpha Canis Minoris.
+for k,v in pairs(procyon) do
+  howlci.log("debug", "ID: "..tostring(k).." / Name: "..tostring(v.name).." / Status: "..tostring(v.status))
+end
+
 for i=1, 5 do
   print("waiting 2 secs to check for marco/polo completion... (try "..tostring(i)..")")
   sleep(2)
@@ -16,7 +22,7 @@ for i=1, 5 do
 end
 
 if done then
-  howlci.status("pass", "Marco/Polo process test completed")
+  return
 else
   howlci.status("fail", "Marco/Polo process test failed!")
   printError("Marco/Polo process test failed!")
