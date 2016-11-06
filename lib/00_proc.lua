@@ -1,7 +1,6 @@
 if _G.proc then return end
 
-local bootload = _G.idea
-_G.idea = nil
+
 
 
 local se = {}
@@ -11,6 +10,9 @@ _G.proc.ipm = {}
 local re
 
 proc.create = function(func, name)
+  if type(func) == "string" then
+    func = loadfile(func)
+  end
   if type(func) ~= "function" then
     error("Expected function, got "..type(func).." instead. 0/10 would not wrongly execute again", 2)
   end
@@ -103,14 +105,8 @@ proc.ipm.receive = function()
   return os.pullEventRaw("ipm_receive")
 end
 
-if not bootload then
-  printError("Crap! /boot/init.lua does not exist!")
-  onlyCI( "status", "error", "Crap! /boot/init.lua does not exist! (".._G.COSVER..")" )
-  onlyCI( "close" )
-  read()
-end
 
-local sysboot = proc.create(bootload, "sysboot")
+local sysboot = proc.create("/boot/init.lua", "sysboot")
 se[sysboot]["veryImportant"] = true
 
 while true do

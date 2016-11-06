@@ -1,6 +1,4 @@
-if _G.ini then return end
 
-_G.ini = true
 
 -- I love optimization, guys!
 local log_premes
@@ -32,7 +30,7 @@ if howlci then
     if string.sub(testload[i], 3, 3) == "_" then
       log("Running test '"..testload[i].."'!", "info")
       if howlci then
-        print( fs.combine("/sbin/tests", testload[i] )
+        print( fs.combine("/sbin/tests", testload[i]) )
       end
       loadfile( fs.combine("/sbin/tests", testload[i]) )() --here we don't start a new process because we don't want multiple tests running at the same time. that'll cause anarchy in the logs!
     end
