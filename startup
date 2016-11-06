@@ -40,6 +40,9 @@ _G.onlyCI = function(func, ...)
   if howlci then howlci[func](...) end
 end
 
+_G.COSVER = _HOST or "ComputerCraft ".._CC_VERSION
+
+
 local oldState = {}
 local msgs = true
 

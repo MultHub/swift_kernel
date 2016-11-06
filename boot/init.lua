@@ -1,6 +1,6 @@
-if _G.COSVER then return end
+if _G.ini then return end
 
-_G.COSVER = _HOST or "ComputerCraft ".._CC_VERSION
+_G.ini = true
 
 -- I love optimization, guys!
 local log_premes
