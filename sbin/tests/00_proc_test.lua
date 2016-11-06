@@ -1,7 +1,13 @@
-print("this is just debug! hi data! (ba dum tsh)")
 
-_G.MARCO_ID = proc.create( loadfile("/sbin/tests/marco.lua"), "Marco" )
-_G.POLO_ID = proc.create( loadfile("/sbin/tests/polo.lua"), "Polo" )
+
+local marco = loadfile("/sbin/tests/marco.lua")
+local polo = loadfile("/sbin/tests/polo.lua")
+
+setfenv(marco, getfenv(0))
+setfenv(polo, getfenv(0))
+
+_G.MARCO_ID = proc.create( marco, "Marco" )
+_G.POLO_ID = proc.create( polo, "Polo" )
 
 
 howlci.log("debug", "Current running processes:")
@@ -12,7 +18,7 @@ end
 
 print("waiting for marco/polo completion...")
 os.pullEvent("POLO!")
-if _G.GOTMARCO and _G.GOTPOLO then
+if (_G.GOTMARCO == true) and (_G.GOTPOLO == true) then
   proc.kill( _G.MARCO_ID )
   proc.kill( _G.POLO_ID )
   print("marco/polo success!")
